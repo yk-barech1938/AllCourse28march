@@ -1,0 +1,148 @@
+			1: Inline CSS
+	doing styling inside the tag, it's not good practice.
+<h1 style="color: red;">Heading one</h1>
+----------------------------	
+			2: Internal CSS
+	doing styling in the html section, it can still in the page but separate from the html tags. it can be inside the 
+	head tag.
+<head>
+	<style>
+		h2{color:green;}
+	</style>
+</head>
+----------------------------------------------------------------------------------------
+a 	          {                  color          :             red;                }
+-------------------------------------------------------------------------------------------
+selector   declartion start({)	  property	 separator  	  value    declartion end
+---------------------------------------------------------------------------------------------
+			3: External CSS
+	doing stying in a sperate file make it to (style.css). and using the link tag into head section for reference
+<link rel="stylesheet" href="foldername/style.css">
+
+====================================================================================================================
+			4: Selectors
+	(. is used for class and # is used for id).
+i): single selectors
+	#welcome or anyof your id or class or tag name
+-------------------------------------
+ii): multiple selectors
+	using multiple tags or ids or classes in one section (#welcome,#about,.primary-heading{,,,})
+-----------------------------
+iii): Nested selectors
+	suppose we want to select the paragraph inside the div section we use nested selectors.{#id tag}
+i.e: #welcome p {it means that inside the welcome there is a p}
+----------------------------------------------------------
+iv): Body elements selectors (elements are all of these (with in tag div, body,head,p,h1 etc)
+=======================================================================================================================
+			5- Fonts
+	HTML tag by default have font size 16px. 
+~font-family: format of the words (arial, timesnewroman, sans-serif etc). we can use online fonts to search in google fonts
+~font-size : 20px;
+~line-height: 1.6em;    using the space between two lines 
+	em is the font-size of parent element. suppose by default value is 16px, we use 2em it multiple to 16x2px.
+~font-style: italic; <p>asdad <span>adasdadq</span>asdadad</p> #id p span{}
+~font-weight: bold; <p>asdad <span>adasdadq</span>asdadad</p> #id p span{}
+========================================================================================================================
+			6: Colors (Name, rgb, Hex)
+i): Color: green;
+ii): Color:rgb(200,100,0); it should be written in integers and between 0-255
+iii): Color: #f4f4f4; start with the # and depends characters(000000,0000ff, #333 etc..)
+ use help-with color.hex.com or htmlcolorcodes.com
+===========================================================================================
+			7: Background-color & Borders
+i: background-color: blanchedalmond;
+ii: Border: applying these three will affect the section, it wont if applying single.
+	~border-width:3px;
+	~border-color:red;
+	~border-style:solid;
+or you can apply in one line (border: width style color;)
+	~border: 3px solid red;
+Suppose we want to change the color of border of top line we use border-top and same property values(top,left,right,bottom)
+	~border-top: blue solid 3px;
+---------------------------------------------
+iii: border-radius: 
+	if we want to a rounded corner we use radius property
+border-radius:10px;
+------------------
+iv: border-top-left-radius:(instead of top-left,right and bottom-left,right)
+	if we want to round the corner of one side of the top we use this property.
+border-top-left-radius:10px;
+-----------------------------------------------------------
+v:) Background Image Property:
+~background-image:url('./img/file');
+~background-position: 100px 100px; 		the image go to the x-axis 100px and goes to the y-axis 100px;
+~background-position:-100px -100px; 		the image goes to the left xand y axis 100px.
+~background-position:center center OR center top	it will show the center 
+~background-repeat: no-repeat: 			it wont repeat the image if it's repeating
+~background-size: cover; 			if we want to show a full picture in a small sections we use cover
+\\\\\\\\\\\\\\\\\\\\
+
+	we can re write the above section in one line
+~background: url('./img/file') no-repeat center center/cover
+
+~background-attachment:fixed; 		this will fix the image and the browser will can go through that above. like in websites
+~height:300px;
+~width:600px;
+-----------------------------------------------==========
+=================================================================================================================
+
+				8: Box Model, Margin & Padding
+
+	~~~Margin is the outside of the element border and padding is the inside of the element border.
+padding: 10px;    		 is used for all side
+Margin: 5px;    		is used for all side
+
+i;) Box-sizing: border-box; 	the box-sizing property will pushes the padding inside if we give more padding to above the width.
+Example=>	.data{background:#f4f4f4;border:2px #777 solid;width:500px;padding:120px; box-sizing:border-box;}
+-------------------------------------------------------------------------------
+
+ii: Padding:	
+	padding is the spacing around inside of the border.
+exmple: 
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 10px;
+padding-left: 20px;
+-----------A shorhand for that is padding= top right bottom left-----
+~~padding: 10px 20px 10px 20px;
+
+-----------again we can see that top/bottom is the same and left/right is the same shortcut is that
+~~ padding: 10px 20px;      top/bottom and left/right
+-------------------------------------------------------------------------------------------------
+
+iii: Margin:	
+	margin is the spacing around outside of the border.
+margin has the same property and same method just as for padding.
+========================================================================================================================
+
+					9: Float & Alignment
+if we want the section to the middle, just ad whole section to the div class conatiner and make the width 960px and margin auto
+.container{
+width: 960px;
+margin:auto; OR margin: 30px auto; (top/bottom(30px)}
+
+	we have issue with the width in that case in a responsive because when we want to make it smaller the page it hides the content
+	it doesnt repsonsive content.
+for that use 
+~instead of width use max-width:960px; 
+			max-width is use for responsiveness.
+----------------------------------------
+i:) Text Alignment:
+	it will align our text accoring to our need, By default the text is align at the left
+~text-align: right or center or justify.
+
+-------------------------------------------------------------------
+
+ii:) Floating:
+	flaoting is used in the naviation bar horizontal naviations and also float the section aur align the section in a particular portion make it boxes.
+{float: right Or Left;	this will float it but we a=have to give the width in percentage according to our container width
+width:70% and other is 30%  if we are floating two sections.}
+
+---------------------------------------
+iii:) clear: if we add other box-4 section this section is on the last section not below that sections, so for that we use clear property and it will come to the next line
+
+	.clr{clear: both;  this will clear both right and left float and save our section in to the next line
+		use this clr in the <div class="clr"></div>}	
+===============================================================================================================
+
+						10: Link State and Button Styling

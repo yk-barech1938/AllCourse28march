@@ -1,0 +1,233 @@
+					MVC: is a Design pattern (tareeka (a way of something ))
+~Model: 	Application Data and behaviuor interms of its problem domain(domain Model= movie, customer, transaction etc) they are plain CLR objects or (POCOs)
+~Controller:	Is responsible for an HTTP request. (www.asd.com/movies)
+~View:		The HTML markup that we display to the user.
+~Router:	Selects the right controller to handle a request.
+I.e
+	vidly.com/movies-->[Router]-->[controller]movies controller class
+
+CLR or poco means that if we create a customer movel we use the property according to customer(Id,Name,Age,Product etc) this is what CLR or POCO is.
+----------------------------------------------------
+					ASP.NET MVC: is a .NET framework which follows MVC design patterns. used for Web Development only.
+===================================================================================================================================================
+
+			1: Project structure Files understanding
+
+~App_Data:
+	All the data which is required for read & write into application. this is where our database files will be store. 
+------------------------
+~App_Start:  when the application is start.
+	Here you put all the configuration file. Ex-Route Configuration, bundle configuration
+	i). Route Conif:    how you can manage your url.
+	ii). bundle config: how you can manage your js, css files.
+--------------------------------------------------------------
+~Content:
+	It stores images, CSS other than scripts.
+--------------------------------------
+~Controller:
+	Here you put all the controllers.
+-------------------------------------------
+~fonts:
+	These are some custom fonts which are used by Bootstrap.
+-------------------------------------
+~Models: models are database related, This folder has all the models.
+----------------------------------------------------------------
+~Scripts:
+	Here you put all the scripts of the application.
+-----------------------------------------------------------------
+~Views:
+	Here you put all the Views (html code)
+----------------------------------------------------------------------
+~Shared:
+	-This folder will contain shared or common things which is common for all views. 
+	-suppose we want Contact Us one file for all we save into the Shared Folder.
+----------------------------------------------------------------------
+~Favicon.ico:
+	short for favorite icon, also known as a shortcut icon, website icon, tab icon, URL icon: is a file containing one or more small icons, associated with a particular website.
+----------------------------------------------------------------------
+~Global.asax:
+	when the application is start, this method will be called first(Application_Start()). Here we are registring a few things.
+	for example: like the Route, when the applicaton is started we tell that this is our route.
+------------------------------------------------------------------------------------
+~packages.config:
+		All the installed packages are available here.(versions(js, jquery, mvc, css bootstrap etc))
+---------------------------------------------------------------------------
+~Web.config:
+	whole application configuration related things are avaible here. if working with database your connection string will be in web.config,
+	example: connection string, want to show an error page can be defined here,  404 error page can be defined here.
+------------------------------------------------------------------------------------------
+~References:
+	all the use dll are available here(system.web.mvc, system.core, system.data etc)
+
+========================================================================================================================================================================
+
+					2: MVC
+				       ---------
+i). CONTROLLER:
+	Controllers are .cs files which reside(inside) in Controllers folder. Contrllers are used to handle browser incoming http request, 
+	get data from models(if required), provide data to corresponding view or request(directly) and generate response.
+	
+	~~Action methods:
+--------------------=>  .A method inside a Controller is called as Action Method. 
+			.Default return type of Action method is ActionResult
+			.only a public method can be access from http request
+			.by default all Action methods are GET
+			.An action method can return View, File, Partial View, JSON, string etc.
+     
+	~~Parameters in Action Method:
+---------------------=> . Parameters are required to get data which is sent in the URL
+			. Example: I need to fetch employees profile based on their Ids.
+			. Localhost:xxxx/Employee/Profile?id=1
+			. localhost:xxxx/Employee/Address?id&Department=tech (this is for multiple parameters )
+			. Nullable parameter will be used as ?( int? id....string? dept)
+GameController
+ public string FullName(string first,string last)
+        {
+            string value = string.Empty;
+            if (!string.IsNullOrEmpty(first) && string.IsNullOrEmpty(last) )
+            {
+                value = "Your first name is = "+first;
+            }
+            else if (string.IsNullOrEmpty(first) && !string.IsNullOrEmpty(last))
+            {
+                value = "Your last name is " + last;
+            }
+            else if (!string.IsNullOrEmpty(first) && !string.IsNullOrEmpty(last))
+            {
+                value = "Your first name is = " + first + " and last name is = " + last;
+            }
+            else
+            {
+                value = "No Data Entered";
+            }
+            return value;
+
+
+
+-------------------------------------------------------------------------------------------------
+
+	~~New / Existing Controller:
+				. A controller should represent an entity(employee, salary, clients etc)
+				. All the operations related to same should be in same controller.
+-----------------------------=>	 New:
+				When you need a new entity (example employee, salary, clients etc)
+-----------------------------=>	 Existing: 
+				when you need an operation of a enitity. if you already have related controller the use it otherwise create it
+
+==========================================================================================================================================================
+
+ii). VIEW: (ViewResult is child of ActionResult, we  can use both it's action we use action if showing view we use view result)
+----------|
+	-In MVC browser cant directly call view, every call must go through controller. it's all depends upon action method
+	.cshtml file (can write c# and Html code inside)
+	-UI of application
+	-Support pure html
+	-Everything which is visible to a user on browser is View
+-------------------------------=>
+~Why view is Required???
+	-to make your app interactive.
+	-Easy to use	
+	-To use html and other client side framework
+-----------------------------------------------------
+~Link Adding:
+	-we were doing manually to to view
+	-Now we are adding link and going to that link
+	-(a href="/controller/action"> Text </a>)
+ <a href="/Home/AboutUs">Home - About us</a>
+        <a href="/Employee/Index">Employee - Index</a>
+        <a href="/Employee/AboutUs">Employee - AboutUs</a>
+
+-------------------------------------------------------------
+~How controller find a view???
+	-first it search in corresponding view folder(same name is controller)
+	-then it goes to Shared folder
+----------------------------------
+~what if view of action method name is diiferent???
+ (Index.cs and Index.cshtml but we rename into the asd.cshtml), It wont find the corresponding view.
+	we have to tell like this (View("asd")). then it will go to the corresponding page or whatever page you want
+ 
+--------------------------------------------------------------
+~How Shared Files works???
+		if we save our index.cshtml file into shared and access through our home controller it can still access it.
+		because when controller dont find it's view on same folder then it will go to the shared view.
+
+------------------------------------------------------------
+~what if view is in the different Folder???
+	-then will tell by hard coded that in this folder our view is located.
+	-(View("~/Views/Test/Index.cshtml");)
+
+
+===============================================================================================================================================
+
+iii): MODEL:
+		-Provides data and associated logic to the view.
+		-Model is responsible for data
+		-In dynamic website data comes from database by models.
+		Once data comes from database, then controller action method  returns model to view.
+
+------------|-----|
+Employee(model&controller):
+			public ActionResult Index()
+			{var data=GetEmployee();
+			 Return View(data)
+			}
+			public Employee GetEmployye()
+			{return new Employee(){Id=1,Name="Younas",Address="Quetta"
+			};}
+Views:
+@model Model.Employee
+
+{Table
+@Model.Id
+@Model.Name
+@Model.Address}
+===============================================================================================================
+
+
+				3: Razor ViewEngine
+			      ||-------------------||
+~What is a ViewEngine???
+~Why ViewEngine is Required???
+~What is Razor???
+~Razor Syntax???
+~Comments in Razor syntax???
+~Escape sequence in Razor syntax???
+||-------------------------------------||
+~What is ViewEngine???
+--------------> first your view page goes to the ViewEngine, ViewEngine take All HTML and Programming Language(C#) which is written in View 
+		.....that converts into Pure HTML (No C#) and show into browser. 
+View[HTML+C#]-->[ViewEngine]-->[Pure HTML(no C#)]Browser
+------------------------------------------------------------------------------
+
+~Why ViewEngine???
+	-ViewEngine is Responsible for creating HTML for views. 
+	-Converts HTML+ Programming Lang to Pure HTML.
+	-To Find Corresponding View for Action Method.
+	-To find view from shared folder.
+	-Used to write C# code on views(with the help of ViewEngine).
+	-Used for HTML helpers.
+	-Used in strongly binding view... etc.
+-----------------------------------------------------------------------
+
+~What is Razor???:
+	-Razor is a View Engine
+	-is not a new programming language it's way(tareeka)
+	-View file extension for Razor  is .cshtml and .vbhtml
+	-Availabe in System.Web.Razor namespace
+	-writing programming language on view is very easy
+	-"Razor is markup for embedding server side code into web pages".
+-----------------------------------------------------------------------
+~Razor Syntax???
+---------> It all begins with @
+		-signle line syntax @DateTime.Now, @(5-3)...
+		-multiline syntax @{var a=2; var b=2;var c=a+b; var tme=DateTime.Now;}
+-----------------------------------------------------------
+~Escape Sequence in Razor syntax???
+		-Razor is very intelligent (ykabrech@gmail.com) it will avoid razor syntax
+		-for writing @ by mentioning your account or any reference use @@ it will escape one and avoid the razor syntax.
+========================================================================================================================================
+
+
+
+
+
