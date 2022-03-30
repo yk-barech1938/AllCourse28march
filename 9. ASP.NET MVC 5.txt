@@ -226,7 +226,7 @@ View[HTML+C#]-->[ViewEngine]-->[Pure HTML(no C#)]Browser
 		-Razor is very intelligent (ykabrech@gmail.com) it will avoid razor syntax
 		-for writing @ by mentioning your account or any reference use @@ it will escape one and avoid the razor syntax.
 ========================================================================================================================================
-
+			\|/
 
 
 
