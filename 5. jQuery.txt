@@ -1,0 +1,157 @@
+syntax, 
+selectors,
+mouseEvents(onclick,dblclick,contextmenu,mouseenter and leave)
+keyboardsevents(keypress,keydown,keyup)	
+Form Events			
+				1: Introduction:(Moto=> Write less do more)
+				|--------------|
+	-Lightweight JavaScript Library
+---------------------
+~Why use jQuery???
+	-short selectors($('.class,#id or tag name'))
+	-Variety of Animation Functions
+	-Easy DOM Manipulation(in HTML DOM value set or get is difficult but jQuery make it easy)
+	-Easy CSS Styling
+	-Easy DOM Traversing(easy to target DOM Element)
+	-Simple Ajax Code
+-------------------------------
+~Benefits of jQuery???
+	-Browser Independent
+	-Increase Coding Speed
+---------------------------------
+~jQuery with CDN Path???
+	-CDN(Content Delivery Network)
+	-jQuery is in different server by using CDN
+	-benefit is this that all load is not on your sever the jquery load is in different server.
+--------------------------------------------------
+===================================================================================================
+				2: Basic Syntax???
+				|---------------|
+JavaScript:
+----------}
+	<script>
+		var a=document.getElementById("idName").innerHTML();
+		console.log(a);
+	</script>
+-------------------------------
+~jQuery:
+---------|
+<script>
+$(document).ready(function(){var a=$("#test").html();});   
+</script>
+-------------------------------
+			-$(document)=> selectors =>(Target Dom Element) 
+			-ready()=>method=> What work
+==================================================================================
+				3:Selectors (by choosing selectors whatever method we can apply)???
+Advance Selectors:
+-----------------
+
+~$("*"): 	select all Tags in HTML
+~$("ul li"): 	in ul select all li
+~$(".abc, ,.xyz"): multiple classes
+~$("h1,div,p"):   Multiple tags
+~$("p:first"): 	paragraphs first target we have more then one p in whole page
+~$("ul:first"): ul first li
+~$("p:last"): last paragrpah or list whatever
+~$("li:even Yapir odd"): all li in even numbers or odds numbers (suppose we have 10 li so it will select 0,2,4,...)
+
+EXAMPLE: we will be doing css method using
+\-------\|/
+
+	-$(#list).css("property name","value");
+	-$(#list).css("color","red");
+	-$(#ul li).css("border","2px solid red");
+---------------------------------------------------------------------------------
+==================================================================================================
+				4: jQuery Mouse Event???( there are 5 events) 06 video
+==========>>>>|YOU CAN APPLY ON EVERY ACTION images, headings, paragraphs etc.
+~.click()
+~.dblclick()
+~.contextmenu(): right click
+~.mouseenter() : when mouse come into that section or just arrived in that content.
+~.mouseleave() : when mouse leave from that section or tag
+||||||||||||||||||||||||||||||||||||||||||||||||
+
+~.click()
+	$("#box").click(function(){$("box").css("background-color","green");})
+	-we can also take whole box as var a=$('box').html();console.log(a);
+-------------------------
+~.dblclick()
+	$("#box").dblclick(function(){$("box").css("background-color","orange");})
+
+---------------------------------
+~.contentmenu()
+	$("#box").mouseenter(function(){$("box").css("background-color","purple");})
+
+---------------------------------
+~mouseleave()
+		
+	$("#box").mouseleave(function(){$("box").css("background-color","tan");})
+-------------
+~~YOU CAN APPLY ON EVERY ACTION images, headings, paragraphs etc.
+=========================================================================================================
+				5: Keyboard Events???(3 types of events) 07 video
+~keypress() press and keydown both works same 
+~keydown()
+~keyup()
+-----------------------------------------
+i|ii: keypress ya down()
+___________|
+	 $('body').keypress(function(){
+        $(this).css('background-color','red');
+      })
+-----------------------------------------
+iii:
+_____||
+	$('body').keyup(function(){
+        $(this).css('background-color','tan');
+      })
+--------------------------------------------------------------------------
+======================================================================================
+
+					6: Form Events???(there are 5) 08 video
+~.focus():  input box it focus
+~.blur	 :  when we remove focus it becomes blur
+~.change(): we use this with select box, when we want to change a select box
+~.Select(): input box when seelct it selects it (only works with input box) 
+~.Submit(): form button submit this event will triger
+----------------------------
+~.Change():
+________|= (options used and show selected country below in div)
+	$('#country').change(function(){
+  var a=$(this).val();
+  $('#test').html(a);
+
+});
+-------------------------
+~.SELECT():> in input box if you select the text inside you have written like inside,
+		 the input you have select underline section it will affect
+
+$('#name,#class').select(function(){
+  $(this).css('background-color','yellow')
+
+});
+-----------------------------------------------
+~.SUBMIT():
+_______|- $('#sform').submit(function(){
+  var name=$('#name').val();
+  var cls =$('#class').val();
+  $('#test1').html(name);
+  $('#test2').html(cls);});
+===================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
